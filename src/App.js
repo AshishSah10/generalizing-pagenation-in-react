@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState} from "react";
+
 import "./styles.css";
 
 export default function App() {
@@ -15,9 +16,7 @@ export default function App() {
   const firstPage = 1;
   const lastPage = Math.ceil(totalData / LIMIT);
 
-  const buttonArray = new Array(lastPage)
-    .fill(1)
-    .map((_, index) => index + 1);
+  const buttonArray = new Array(lastPage).fill(1).map((_, index) => index + 1);
 
   const handlePrev = () => {
     const newPage = currentPage <= 1 ? 1 : currentPage - 1;
@@ -33,14 +32,20 @@ export default function App() {
   const handlePageNavigation = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const renderedData = pagenatedData(currentPage, LIMIT)
+  const renderedData = pagenatedData(currentPage, LIMIT);
+  
+  
+  
   return (
     <div className="App">
       {renderedData.map((item, index) => (
         <h3 key={index}>{item}</h3>
       ))}
       <div className="page-navigation">
-        <button disabled={currentPage === firstPage} onClick={handlePrev}>
+        <button
+          disabled={currentPage === firstPage}
+          onClick={handlePrev}
+        >
           Prev
         </button>
         {buttonArray.map((item, index) => (
@@ -52,13 +57,11 @@ export default function App() {
             {item}
           </button>
         ))}
-        <button
-          disabled={currentPage === lastPage}
-          onClick={handleNext}
-        >
+        <button disabled={currentPage === lastPage} onClick={handleNext}>
           Next
         </button>
       </div>
+
     </div>
   );
 }
